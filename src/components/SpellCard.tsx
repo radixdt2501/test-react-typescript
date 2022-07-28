@@ -7,12 +7,13 @@ import { DungeonsDragonsContext } from "../context/DungeonsDragonsContext";
 const SpellCard: React.FC<ISpellCardProps> = ({ spell, isFavorite }) => {
   const navigate = useNavigate();
   const dungeonsDragonsState = useContext(DungeonsDragonsContext);
-
+  
   return (
     <div className="relative group rounded-lg hover:shadow-2xl border-2 border-gray-300 hover:border-blue-400 p-10 text-center bg-white w-full mx-auto sm:mx-0 max-w-sm">
       <div className="absolute right-5 top-5">
         {!isFavorite ? (
           <svg
+            data-testid = 'add-fav'
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 cursor-pointer"
             fill="none"
@@ -29,6 +30,7 @@ const SpellCard: React.FC<ISpellCardProps> = ({ spell, isFavorite }) => {
           </svg>
         ) : (
           <svg
+          data-testid = 'fav-icon'
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 cursor-pointer"
             viewBox="0 0 20 20"
