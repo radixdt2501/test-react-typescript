@@ -1,6 +1,6 @@
 import { memo, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {PulseLoader} from 'react-spinners'
+import { PulseLoader } from "react-spinners";
 
 import SpellDetails from "../components/SpellDetails";
 
@@ -12,20 +12,30 @@ const SpellDetailPage = memo(() => {
 
   const dungeonsDragonsState = useContext(DungeonsDragonsContext);
   const { getSpellDetails } = useSpells();
-	const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
-			setIsLoading(true)
+      setIsLoading(true);
       const spellDetail = await getSpellDetails(param?.id!);
-			setIsLoading(false)
+      setIsLoading(false);
       dungeonsDragonsState?.actions.setSpellDetails({ spellDetail });
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return 		(<>{isLoading ? <div className="h-screen  flex items-center text-center justify-center	"> <PulseLoader /></div>
-:  <SpellDetails data-testid='SpellDetails'/>}</>);
+  return (
+    <>
+      {isLoading ? (
+        <div className="h-screen  flex items-center text-center justify-center	">
+          {" "}
+          <PulseLoader />
+        </div>
+      ) : (
+        <SpellDetails data-testid="SpellDetails" />
+      )}
+    </>
+  );
 });
 
 export default SpellDetailPage;
